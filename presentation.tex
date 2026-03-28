@@ -48,13 +48,13 @@
         \put(-100,20){\includegraphics[height=1.2cm,keepaspectratio]{udc.jpeg}}
         %\put(137,20){\includegraphics[scale=0.09]{Logos/Logo Mostra IC.png}}
         %\put(300,50){\includegraphics[scale=0.05]{Logos/Logo Demat.png}}
-        \put(160,20){\includegraphics[height=1.2cm,keepaspectratio]{\smalllogo}}
+        \put(160,20){\includegraphics[height=1.cm,keepaspectratio]{\smalllogo}}
     \end{picture}\\
   \href{mailto:soirfaneabdallahhoumadi863@gmail.com}{soirfaneabdallahhoumadi863@gmail.com}
 }
 \presentationDate{31 Mars 2026}
 \setbeamertemplate{footline}{
-	\hfill \textcolor{gray}{\scriptsize \textbf{6\up{ème} Édition des Journées Scientifiques de la FST}-- \textcolor{espoircolor}{\textbf{\textit{Le numérique au service du vivant}}}} \hspace{0.5cm}
+	\hfill \textcolor{gray}{\scriptsize \textbf{6\textsuperscript{ème}  Édition des Journées Scientifiques de la FST}-- \textcolor{espoircolor}{\textbf{\textit{Le numérique au service du vivant}}}} \hspace{0.5cm}
 	\vspace{0.2cm}
 }
 \begin{document}
@@ -97,16 +97,9 @@
 \end{itemize}
 }
 
-\only<2>{
-\textcolor{orange}{\textbf{\faIcon{chart-line} Afrique Subsaharienne}}
-\begin{itemize}
-    \item Croissance \textbf{rapide} des déchets
-    \item \textbf{90\%} en décharge sauvage
-    \item \textbf{57\%} de déchets organiques
-\end{itemize}
-}
 
-\only<3>{
+
+\only<2>{
 \textcolor{red}{\textbf{\faIcon{city} Cas de Moroni}}
 \begin{itemize}
     \item \textbf{0,27 kg/hab/jour}
@@ -119,7 +112,7 @@
 \hfill
 \begin{minipage}{0.45\textwidth}
 \scriptsize
-\only<4>{
+\only<3>{
 \textcolor{purple}{\textbf{\faIcon{exclamation-triangle} Impacts Majeurs}}
 \begin{itemize}
     \item Pollution des \textbf{sols} et \textbf{eaux}
@@ -128,7 +121,7 @@
 \end{itemize}
 }
 
-\only<5>{
+\only<4>{
 \textcolor{green}{\textbf{\faIcon{tools} Solutions Existantes}}
 \begin{itemize}
     \item Réduction à la source
@@ -138,7 +131,7 @@
 \end{itemize}
 }
 
-\only<6>{
+\only<5>{
 \fcolorbox{green}{white}{
 \begin{minipage}{\textwidth}
 \scriptsize
@@ -730,6 +723,24 @@ Macro F1 & 86.1\% & 84.7\% \\
 }
 
 \end{frame}
+\section{Approche avec le modèle JEPA}
+\begin{frame}{Approche avec le modèle JEPA}
+	\centering
+	\vspace{0.5cm}
+	
+	\only<1>{
+		\Huge
+		\textcolor{mlblue}{\faIcon{project-diagram}}
+		\vspace{0.5cm}
+		
+		\textbf{APPROCHE AVEC LE MODÈLE JEPA}
+		\vspace{0.3cm}
+		
+		\normalsize
+		Joint Embedding Predictive Architecture
+	}
+	
+\end{frame}
 \section{Améliorations du Système}
 \begin{frame}{Améliorations du Système}
     \centering
@@ -808,68 +819,24 @@ Intégration de mécanismes de détection d'anomalies avant classification
 }
 
 \only<2>{
-\begin{block}{Trois Approches Explorées}
+\begin{block}{Deux Approches Explorées}
 \begin{itemize}
-    \item \textbf{Confiance du modèle} : Seuil sur les probabilités de prédiction
     \item \textbf{Autoencodeur} : Détection basée sur l'erreur de reconstruction
-    \item \textbf{Discriminateur GAN} : Distinction données connues/inconnues
+    %\item \textbf{Discriminateur GAN} : Distinction données connues/inconnues
 \end{itemize}
 \end{block}
 
 \begin{block}{Base de Données d'Évaluation}
 \begin{itemize}
     \item 4 000 images de test (2 000 connues + 2 000 inconnues)
-    \item Données inconnues : batteries, couches, cartons, autres déchets
+    \item Données inconnues : batteries, cartons, autres déchets
     \item Simulation de contexte réaliste avec nouvelles catégories
 \end{itemize}
 \end{block}
 }
 
 \end{frame}
-\begin{frame}{Détection par Seuil de Confiance}
 
-\only<1>{
-\begin{block}{Principe de la Méthode}
-\begin{itemize}
-    \item Analyse des probabilités de prédiction du modèle
-    \item Rejet si probabilité maximale $<$ seuil fixé
-    \item Acceptation si probabilité maximale $\geq$ seuil
-    \item 20 valeurs testées entre 50\% et 100\%
-\end{itemize}
-\end{block}
-
-\begin{center}
-\includegraphics[width=0.8\linewidth]{detect.png}
-\end{center}
-}
-
-\only<2>{
-\begin{block}{Résultats Expérimentaux}
-\begin{center}
-\begin{tabular}{lcc}
-\hline
-\textbf{Modèle} & \textbf{Meilleur seuil} & \textbf{Exactitude} \\
-\hline
-Sans TL (Flatten) & 0.973 & 76.79\% \\
-Sans TL (AvgPooling) & 0.999 & 75.89\% \\
-Avec TL (Flatten) & 0.973 & 72.27\% \\
-Avec TL (AvgPooling) & 0.973 & 72.64\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{block}
-
-\begin{alertblock}{Analyse}
-\begin{itemize}
-    \item Courbe montre l'évolution performance/seuil
-    \item Meilleurs résultats sans transfert learning
-    \item Seuils optimaux entre 0.973 et 0.999
-    \item Performance limitée à $\sim$77\% maximum
-\end{itemize}
-\end{alertblock}
-}
-
-\end{frame}
 \begin{frame}{Détection par Autoencodeur Variationnel ($\beta$-VAE)}
 
 \only<1>{
@@ -893,8 +860,8 @@ Avec TL (AvgPooling) & 0.973 & 72.64\% \\
 \only<2>{
 \begin{block}{Exemples de Reconstruction}
 \begin{center}
-\includegraphics[width=0.6\linewidth]{train_auto.png}
-\includegraphics[width=0.6\linewidth]{test_auto.png}
+\includegraphics[width=0.5\linewidth]{train_auto.png}
+\includegraphics[width=0.5\linewidth]{test_auto.png}
 \end{center}
 \begin{center}
 \small Haut: entraînement - Bas: test (reconstructions imprécises)
@@ -934,59 +901,14 @@ Anormal & 82.4\% & 73.0\% & 77.4\% \\
 } % Fin du only<4>
 
 \end{frame}
-\begin{frame}{Détection par Réseaux Antagonistes GANs}
 
-\only<1>{
-\begin{block}{Principe et Architecture}
-\begin{itemize}
-    \item Deux réseaux: Générateur (crée des images) vs Discriminateur (détecte les fausses)
-    \item Objectif: Exploiter le discriminateur pour détecter les anomalies
-    \item Images taille réduite: 64×64×3 pour contraintes matérielles
-\end{itemize}
-\end{block}
-
-\begin{center}
-\includegraphics[width=0.8\linewidth]{gan_loss.png}
-\end{center}
-\begin{center}
-\small Évolution instable des pertes - Pas de convergence
-\end{center}
-}
-
-\only<2>{
-\begin{block}{Résultats et Limitations}
-\begin{center}
-\includegraphics[width=0.8\linewidth]{gan_ge.png}
-\end{center}
-\begin{center}
-\small Images générées de mauvaise qualité - Formes floues
-\end{center}
-\end{block}
-}
-\only<3>{
-\begin{alertblock}{Échec de l'Entraînement}
-\begin{itemize}
-    \item Arrêt après 58 époques (pas d'amélioration)
-    \item Discriminateur trop dominant
-    \item Impossible de tester la détection d'anomalies
-    \item Approche prometteuse mais nécessite plus de ressources
-\end{itemize}
-\end{alertblock}
-}
-
-\end{frame}
 \section{Conclusion}
 \begin{frame}{\faIcon{compass} Conclusion}
- \only<1>{
-    \begin{alertblock}{Perspective}
-Mise en place d'un bras robotique pour déployer le système en conditions réelles.
-\end{alertblock}
 
-}
     \centering
     \vspace{1cm}
     
-    \only<2>{
+    \only<1>{
         \Huge
         \textcolor{mlblue}{\faIcon{compass}}
         \vspace{0.5cm}
@@ -1003,7 +925,7 @@ Mise en place d'un bras robotique pour déployer le système en conditions réel
         le tri des déchets avec des modèles de Deep Learning
     }
    
-    \only<3>{
+    \only<2>{
         \vspace{1.5cm}
         
         \LARGE
